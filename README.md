@@ -1,73 +1,128 @@
-# React + TypeScript + Vite
+# Restaurant Food Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A complete restaurant ordering and management system built with React, TypeScript, Vite, Tailwind CSS, React Router, and Context API.
 
-Currently, two official plugins are available:
+## Live Links
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Live Website: https://food-mrheced88-dhapus-projects.vercel.app
+- GitHub Repository: https://github.com/Dhapu/restaurent-food-management
 
-## React Compiler
+## Overview
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This project includes a customer-facing food ordering experience and an admin dashboard for restaurant operations. Customers can browse dishes, filter the menu, manage their cart, place orders, and view an order summary. Admins can sign in, manage food items, monitor orders, and update delivery statuses.
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### User Side
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Home page with hero banner and featured dishes
+- Menu page with food cards, search, category filter, and price filter
+- Add to cart flow with toast notifications
+- Cart page with quantity controls, item removal, and pricing summary
+- Checkout form with validation for customer details
+- Order summary page with confirmed order information
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Admin Panel
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Basic admin login
+- Dashboard cards for orders, revenue, and menu stats
+- Add, edit, and delete menu items
+- Update order status from `pending` to `preparing` to `delivered`
+
+### UX and App Behavior
+
+- Responsive layout for mobile and desktop
+- Loading skeleton states
+- Error and validation handling
+- Local persistence using `localStorage`
+- SPA routing support with `vercel.json`
+- Dark and light theme toggle
+
+## Demo Admin Login
+
+- Email: `admin@flameandfork.com`
+- Password: `admin123`
+
+## Tech Stack
+
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS 4
+- React Router DOM
+- Context API
+- React Hot Toast
+- React Icons
+
+## Project Structure
+
+```text
+src/
+  assets/
+  components/
+  context/
+  pages/
+  utils/
+  App.tsx
+  main.tsx
+  types.ts
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Main Modules
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- `src/context/AppContext.tsx`: global state for foods, cart, orders, auth, and theme
+- `src/context/useAppContext.ts`: shared hook for accessing app state
+- `src/assets/mockData.ts`: starter restaurant menu data
+- `src/components/`: reusable UI like navbar, food cards, cart items, and admin dashboard
+- `src/pages/`: route-level pages for user flow and admin flow
+- `src/utils/`: currency/date formatting, storage helpers, and constants
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Getting Started
+
+### 1. Install dependencies
+
+```bash
+npm install
 ```
+
+### 2. Run the development server
+
+```bash
+npm run dev
+```
+
+### 3. Build for production
+
+```bash
+npm run build
+```
+
+### 4. Lint the project
+
+```bash
+npm run lint
+```
+
+## Deployment
+
+This app is deployed on Vercel. A `vercel.json` rewrite is included so direct navigation to routes like `/menu`, `/cart`, and `/admin/login` works correctly in production.
+
+## Data Handling
+
+- Food items are loaded from mock TypeScript data
+- Cart items, orders, auth state, and theme are stored in browser `localStorage`
+- No backend is required for the current version
+
+## Screenshots
+
+You can view the running app here:
+
+- Home, Menu, and Admin Demo: https://food-mrheced88-dhapus-projects.vercel.app
+
+If you want, screenshots can be added later in this README after capturing the pages from the live app.
+
+## Notes
+
+- This is a frontend-first implementation using mock data and local persistence
+- It is ready to run locally with `npm install` and `npm run dev`
+- It is ready for expansion with a Node.js, Express, or database-backed API
